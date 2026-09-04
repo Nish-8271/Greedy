@@ -1,12 +1,14 @@
-import java.util.*;
+//https://codeforces.com/problemset/problem/1291/B
+
 import java.io.*;
-import java.util.stream.*;
-public class Main {
-    static FastReader in;
+import java.util.StringTokenizer;
+
+public class ArraySharpening {
+    static ArraySharpening.FastReader in;
     static PrintWriter out;
 
     public static void main(String[] args) throws IOException {
-        in = new FastReader();
+        in = new ArraySharpening.FastReader();
         out = new PrintWriter(new BufferedWriter(new OutputStreamWriter(System.out)));
         int t = in.nextInt(); // number of test cases (remove if single test case)
         while (t-- > 0) {
@@ -20,10 +22,31 @@ public class Main {
         int n = in.nextInt();
         int[] arr = new int[n];
         for (int i = 0; i < n; i++) arr[i] = in.nextInt();
+        int[] l=new int[n];
+        int[] r=new int[n];
+        for(int i=0;i<n;i++){
+            if(arr[i]>=i)l[i]=1;
+            else break;
+        }
+        for(int i=n-1;i>=0;i--){
+            if(arr[i]>= n-i-1)r[i]=1;
+            else break;
+        }
+        int f=0;
+        for(int i=0;i<n;i++){
+            if(l[i]==1 && r[i]==1){
+                f=1;
+                break;
+            }
 
+        }
         // ---- your logic here ----
-
-        out.println(n); // sample output
+        if(f==1){
+            out.println("Yes");
+        }else{
+            out.println("No");
+        }
+//        out.println(n); // sample output
     }
 
     // ---------- Fast I/O ----------
